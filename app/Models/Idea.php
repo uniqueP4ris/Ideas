@@ -13,6 +13,7 @@ class Idea extends Model
         'titulo',
         'descripcion',
         'estado',
+        'observacion',
         'autor',
         'categoria_id'
     ];
