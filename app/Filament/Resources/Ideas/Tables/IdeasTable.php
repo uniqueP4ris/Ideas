@@ -99,11 +99,11 @@ class IdeasTable
                     ->modalheading('¿Deseas rechazar esta idea?')
                     ->schema([
                             TextArea::make('motivoRechazo')
-                            ->label('Motico de rechazo')
+                            ->label('Motivo de rechazo')
                             ->required(),
                     ])
                     ->action(function (array $data, Idea $record): void {
-                        $record->rechazar()->associate($data['rechazar']);
+                        $record->observacion()->associate($data['observacion']);
                         $record->save();
                     })
                     ->visible(fn(Idea $record)=>$record->estado !=='aprobada' && $record->estado !=='rechazado'),
