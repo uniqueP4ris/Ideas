@@ -86,25 +86,31 @@ class IdeasTable
                     ->modalheading('¿Deseas aprobar esta idea?')
                     ->action(function(Idea $record){
                         $record->update(['estado'=>'aprobada']);
-                        notification::make()
-                            ->title('Idea aprobada correctamente')
-                            ->success()
-                            ->send();
+                            notification::make()
+                                ->title('Idea aprobada correctamente')
+                                ->success()
+                                ->send();
                     })
                     ->visible(fn(Idea $record) => $record->estado !== 'aprobada'),
                 Action::make('rechazar')
                     ->requiresConfirmation()
                     ->label('Rechazar')
-                    ->color('Denied')
+                    ->color('danger')
                     ->modalheading('¿Deseas rechazar esta idea?')
                     ->schema([
-                            TextArea::make('motivoRechazo')
+                            TextArea::make('observacion')
                             ->label('Motivo de rechazo')
                             ->required(),
                     ])
                     ->action(function (array $data, Idea $record): void {
-                        $record->observacion()->associate($data['observacion']);
-                        $record->save();
+                        $record->update([
+                                'observacion' => $data['observacion'],
+                                'estado' => 'rechazado'
+                        ]);
+                        notification::make()
+                            ->title('Idea rechazada correctamente')
+                            ->success()
+                            ->send();
                     })
                     ->visible(fn(Idea $record)=>$record->estado !=='aprobada' && $record->estado !=='rechazado'),
             ])

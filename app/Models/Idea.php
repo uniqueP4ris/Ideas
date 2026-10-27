@@ -21,4 +21,5 @@ public function categoria(): BelongsTo
 {
 return $this->belongsTo(Categoria::class);
 }
+
 }
