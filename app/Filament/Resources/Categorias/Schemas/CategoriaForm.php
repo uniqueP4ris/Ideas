@@ -17,8 +17,11 @@ class CategoriaForm
                     -> label('Nombre de categoria')
                     -> helpertext('Ingresa el nombre de la categoria')
                     ->placeholder('Ej categoria')
-                    //disable
-                    ->required(),
+                    ->unique()
+                    ->required()
+                    ->validationMessages ([
+                        'unique' => 'Ya existe una categoria registrada con ese titulo'
+                    ]),
                 Textarea::make('descripcion')
                     ->label('Descripción')
                     -> helpertext('Ingrresa una descripción de la categoria')
