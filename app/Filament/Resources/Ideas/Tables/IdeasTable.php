@@ -19,6 +19,7 @@ use Filament\Notifications\Notification;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Textarea;
+use filament\heroicon\heroicon\Heroicon;
 
 class IdeasTable
 {
@@ -95,6 +96,7 @@ class IdeasTable
                 Action::make('rechazar')
                     ->requiresConfirmation()
                     ->label('Rechazar')
+                    ->icon('heroicon-o-x-circle')
                     ->color('danger')
                     ->modalheading('¿Deseas rechazar esta idea?')
                     ->schema([
