@@ -32,7 +32,10 @@ class IdeaForm
                     ->label('Estado')
                     ->required()
                     ->options([EstadoIdea::opciones()])
-                    ->default('registrada'),
+                    ->default('registrada')
+                    ->hiddenon('create')
+                    ->disabled(fn()=>auth()-user()->rol !== 'admin' || auth()-user()->rol !== 'coordinador')
+                    ->live(),
                 TextInput::make('autor')
                     ->required(),
                 Select::make('categoria_id')

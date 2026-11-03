@@ -80,7 +80,7 @@ class IdeasTable
                 DeleteAction::make(),
                 RestoreAction::make(),
                 ForceDeleteAction::make(),
-                Action::make('aprobar')
+                Action::make('aprobar')->authorize('cambiarEstado')
                     ->requiresConfirmation()
                     ->label('Aprobar')
                     ->color('Success')
@@ -93,7 +93,7 @@ class IdeasTable
                                 ->send();
                     })
                     ->visible(fn(Idea $record) => $record->estado !== 'aprobada'),
-                Action::make('rechazar')
+                Action::make('rechazar')->authorize('cambiarEstado')
                     ->requiresConfirmation()
                     ->label('Rechazar')
                     ->icon('heroicon-o-x-circle')
