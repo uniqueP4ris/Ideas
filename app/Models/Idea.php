@@ -8,6 +8,8 @@ class Idea extends Model
 {
     use SoftDeletes;
 
+    protected $primaryKey = 'idIdea';
+
     protected $fillable = [
         'idIdea',
         'titulo',
