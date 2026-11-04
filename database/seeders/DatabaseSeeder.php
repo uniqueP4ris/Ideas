@@ -25,7 +25,21 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Paris',
             'password' => Hash::make('1'),
-        ]
-    );
+            ]
+        );
+        User::updateOrCreate(
+            ['email' => 'coordinador@ideas'],
+            [
+                'name' => 'Coordinador',
+            'password' => Hash::make('12345'),
+            ]
+        );
+        User::updateOrCreate(
+            ['email' => 'asistente@ideas'],
+            [
+                'name' => 'Asistente',
+            'password' => Hash::make('12345'),
+            ]
+        );
     }
 }

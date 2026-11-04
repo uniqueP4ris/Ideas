@@ -24,7 +24,7 @@ class CategoriaForm
                     ]),
                 Textarea::make('descripcion')
                     ->label('Descripción')
-                    -> helpertext('Ingrresa una descripción de la categoria')
+                    -> helpertext('Ingresa una descripción de la categoria')
                     ->required()
                     ->columnSpanFull(),
             ]);

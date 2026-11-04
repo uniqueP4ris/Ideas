@@ -7,6 +7,7 @@ namespace App\Filament\Resources\Categorias\Tables;
     use Filament\Actions\EditAction;
     use Filament\Tables\Columns\TextColumn;
     use Filament\Tables\Table;
+    use Filament\Actions\DeleteAction;
 
 class CategoriasTable
 {
@@ -36,12 +37,13 @@ class CategoriasTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->recordUrl(null)
             ->recordAction(null)
             ->toolbarActions([
                 BulkActionGroup::make([
-                    //DeleteBulkAction::make(),
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

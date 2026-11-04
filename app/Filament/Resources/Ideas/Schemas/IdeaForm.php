@@ -34,7 +34,7 @@ class IdeaForm
                     ->options([EstadoIdea::opciones()])
                     ->default('registrada')
                     ->hiddenon('create')
-                    ->disabled(fn()=>auth()-user()->rol !== 'admin' || auth()-user()->rol !== 'coordinador')
+                    ->disabled(fn()=>auth()-user()->rol != 'admin' || auth()-user()->rol != 'coordinador')
                     ->live(),
                 TextInput::make('autor')
                     ->required(),

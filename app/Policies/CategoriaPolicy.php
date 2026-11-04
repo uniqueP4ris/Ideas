@@ -29,7 +29,7 @@ class CategoriaPolicy
      */
     public function create(User $user): bool
     {
-                return $user->rol === 'admin'; 
+        return $user->rol === 'admin'; 
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoriaPolicy
      */
     public function update(User $user, Categoria $categoria): bool
     {
-        return false;
+        return in_array($user->rol, ['admin', 'asistente']);
     }
 
     /**
@@ -45,22 +45,7 @@ class CategoriaPolicy
      */
     public function delete(User $user, Categoria $categoria): bool
     {
-        return false;
+        return $user->rol === 'admin';
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Categoria $categoria): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Categoria $categoria): bool
-    {
-        return false;
-    }
 }
