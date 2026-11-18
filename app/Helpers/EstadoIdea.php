@@ -5,7 +5,7 @@ namespace App\Helpers;
 class EstadoIdea
 {
     public const REGISTRADA  = 'registrada';
-    public const EN_REVISION = 'en revisión';
+    public const EN_REVISION = 'en revision';
     public const APROBADA    = 'aprobada';
     public const RECHAZADA   = 'rechazada';
 
@@ -13,7 +13,7 @@ class EstadoIdea
     {
         return [
             self::REGISTRADA  => 'Registrada',
-            self::EN_REVISION => 'En revisión',
+            self::EN_REVISION => 'En revision',
             self::APROBADA    => 'Aprobada',
             self::RECHAZADA   => 'Rechazada',
         ];
