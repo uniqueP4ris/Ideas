@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             IdeaSeeder::class,
         ]);
         User::firstOrCreate(
-            ['email' => 'paris00him@gmail.com'],
+            ['email' => 'paris@mail.com'],
             [
                 'name' => 'Paris',
             'password' => Hash::make('1'),
