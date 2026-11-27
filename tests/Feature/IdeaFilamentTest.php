@@ -7,6 +7,8 @@ use App\Filament\Resources\Ideas\Pages\EditIdea;
 use App\Filament\Resources\Ideas\Pages\ListIdeas;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Filament\Actions\Testing\TestAction;
+
 uses(RefreshDatabase::class);
 
 beforeEach(function(){
@@ -73,4 +75,30 @@ test('editar una idea  sin descripcion', function(){
         'titulo' => 'Robot',
         'descripcion' => 'Crear un robot funcional'
     ]);
+});
+
+test('probar una idea', function(){
+    Livewire::test(listIdeas::class)
+        ->assertSuccessful()
+        ->assertCanSeeTableRecords([$this->idea])
+        ->assertActionVisible(TestAction::make('aprobar')->table($this->idea))
+        ->callAction(TestAction::make('aprobar')->table($this->idea));
+        $this->assertDatabaseHas('ideas',
+        ['idIdea' => $this->idea->idIdea,
+           'estado' => 'aprobada',
+        ]);
+});
+
+test('rechazar una idea', function(){
+    Livewire::test(listIdeas::class)
+        ->assertSuccessful()
+        ->assertCanSeeTableRecords([$this->idea])
+        ->assertActionVisible(TestAction::make('rechazar')->table($this->idea))
+        ->callAction(TestAction::make('rechazar')->table($this->idea),
+            data:['observacion' => 'La idea necesita más información']);
+        $this->assertDatabaseHas('ideas',
+        ['idIdea' => $this->idea->idIdea,
+           'estado' => 'rechazado',
+           'observacion' => 'La idea necesita más información'
+        ]);
 });

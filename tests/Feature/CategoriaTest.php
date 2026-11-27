@@ -9,11 +9,11 @@ uses(RefreshDatabase::class);
 
 use Illuminate\Database\QueryException;
 
-test('Utilizar base de datos de prueba', function () {
-    expect(config('database.default')->toBe('sqlite'));
+    test('Utilizar base de datos de prueba', function () {
+        expect(config('database.default'))->toBe('sqlite');
 
-    expect(config('database.connections.sqlite.database')->toBe(':memory:'));
-});
+        expect(config('database.connections.sqlite.database'))->toBe(':memory:');
+    });
 
 test('registrar una categoria', function () {
     Categoria::create([
